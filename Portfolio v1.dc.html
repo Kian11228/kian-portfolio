@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./styles.css">
+<script src="./image-slot.js"></script>
+<style>
+  a { color: var(--color-accent-700); text-decoration: none; }
+  a:hover { color: var(--color-accent); text-decoration: underline; }
+  ::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 var(--space-6); }
+  .kicker { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent-700); font-weight: 800; font-family: var(--font-heading); margin-bottom: var(--space-2); }
+  .icon-row { display: flex; align-items: center; gap: 8px; }
+  .icon-row svg { flex: none; }
+  .bullets { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+  .bullets li { padding-left: 2px; }
+  .entry-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-2); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+  @media (max-width: 860px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+  .job-card { border: 1px solid var(--color-divider); background: var(--color-surface); padding: var(--space-4); }
+  .nav-toggle-btn { display: none; background: none; border: none; color: var(--color-text); cursor: pointer; padding: 4px; }
+  .nav-links-row { display: flex; gap: var(--space-4); margin-left: var(--space-6); flex-wrap: wrap; }
+  @media (max-width: 760px) {
+    .nav-toggle-btn { display: block; }
+    .nav-links-row { display: none; width: 100%; flex-direction: column; gap: 0; margin: var(--space-3) 0 0; order: 3; }
+    .nav-links-row.open { display: flex; }
+    .nav-links-row a { padding: var(--space-2) 0; border-top: 1px solid var(--color-divider); }
+    .nav-resume-btn { order: 2; margin-left: auto !important; }
+  }
+  .nav-toggle-check { display: none; }
+  .nav-toggle-check:checked ~ .nav-links-row { display: flex; }
+</style>
+</helmet>
+
+<div style="background:var(--color-bg);color:var(--color-text);min-height:100vh">
+
+  <nav class="nav" style="position:sticky;top:0;background:var(--color-bg);z-index:20;flex-wrap:wrap">
+    <div class="wrap" style="display:flex;align-items:center;gap:var(--space-4);width:100%;padding:0;flex-wrap:wrap">
+      <a href="#top" class="nav-brand">Kian Esmaeili</a>
+      <input type="checkbox" id="navToggleCheck" class="nav-toggle-check">
+      <div class="nav-links-row">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#publications">Publications</a>
+        <a href="#research">Research</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="./Kian-Esmaeili-Resume.docx" download class="btn btn-primary nav-resume-btn" style="margin-left:auto">Résumé</a>
+      <label for="navToggleCheck" class="nav-toggle-btn" aria-label="Toggle menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg>
+      </label>
+    </div>
+  </nav>
+
+  <header id="top" class="wrap" style="padding-top:var(--space-8);padding-bottom:var(--space-8)">
+    <div class="grid-2" style="align-items:center">
+      <div>
+        <span class="tag tag-outline" style="margin-bottom:var(--space-4)">Cybersecurity · AI/ML Security Research</span>
+        <h1 style="font-size:56px;margin-bottom:var(--space-3);margin-top:var(--space-3)">Kian Esmaeili</h1>
+        <p style="font-size:18px;max-width:46ch;opacity:0.85">First-author IEEE researcher building AI/ML-driven endpoint security — from ransomware-detection pipelines on Sysmon telemetry to embedded side-channel attacks. MS Cybersecurity candidate at Georgia Tech.</p>
+        <div style="display:flex;gap:var(--space-3);margin-top:var(--space-6);flex-wrap:wrap">
+          <a href="./Kian-Esmaeili-Resume.docx" download class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Download Résumé
+          </a>
+          <a href="#contact" class="btn btn-secondary">Get in touch</a>
+        </div>
+        <div class="icon-row" style="margin-top:var(--space-6);flex-wrap:wrap;gap:var(--space-4);font-size:13px">
+          <span class="icon-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="0"></rect><path d="m22 6-10 7L2 6"></path></svg><a href="mailto:eskian29@gmail.com">eskian29@gmail.com</a></span>
+          <span class="icon-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.36 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>(678) 368-5381</span>
+          <span class="icon-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"></path></svg><a href="https://github.com/Kian11228" target="_blank" rel="noopener">github.com/Kian11228</a></span>
+          <span class="icon-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg><a href="https://www.linkedin.com/in/kian-esmaeili/" target="_blank" rel="noopener">linkedin.com/in/kian-esmaeili</a></span>
+        </div>
+      </div>
+      <div class="grayscale" style="aspect-ratio:4/5;width:100%">
+        <image-slot id="headshot" shape="rect" src="./assets/headshot.jpg" placeholder="Drop a headshot photo"></image-slot>
+      </div>
+    </div>
+  </header>
+
+  <hr class="hr">
+
+  <section id="about" class="wrap" style="padding:var(--space-8) 0">
+    <div class="kicker">01 · About</div>
+    <h2 style="max-width:20ch">Researching how endpoint telemetry and AI can defend real systems</h2>
+    <p style="max-width:70ch;font-size:16px;opacity:0.85">I'm a cybersecurity researcher and engineer working at the intersection of machine learning and endpoint defense. My work spans ransomware detection from Sysmon telemetry, embedded side-channel attacks, and applied AI in enterprise security workflows — grounded in a first-author IEEE publication and two years of research and industry experience at Georgia Tech Research Institute and the Federal Reserve Bank of Atlanta. I'm currently pursuing an M.S. in Cybersecurity at Georgia Tech, starting August 2026.</p>
+  </section>
+
+  <hr class="hr">
+
+  <section id="education" class="wrap" style="padding:var(--space-8) 0">
+    <div class="kicker">02 · Education</div>
+    <h2 style="margin-bottom:var(--space-6)">Education</h2>
+    <div style="display:flex;flex-direction:column;gap:var(--space-6)">
+      <div>
+        <div class="entry-head">
+          <h3>Georgia Institute of Technology</h3>
+          <span class="text-muted">Expected May 2028</span>
+        </div>
+        <p style="margin:0 0 var(--space-1)">M.S. Cybersecurity (Information Technologies) — Atlanta, GA</p>
+        <p class="text-muted" style="font-size:13px">Starting August 2026</p>
+      </div>
+      <div>
+        <div class="entry-head">
+          <h3>University of North Georgia</h3>
+          <span class="text-muted">May 2026</span>
+        </div>
+        <p style="margin:0 0 var(--space-2)">B.S. Cybersecurity, Minor in Entrepreneurship — Dahlonega, GA · Major GPA 3.82/4.00</p>
+        <ul class="bullets">
+          <li>Honors Thesis: AI-driven endpoint security using behavioral analysis of Sysmon telemetry</li>
+          <li>First-author IEEE publication (SoutheastCon 2026, IEEE Xplore)</li>
+          <li>2x recognized in the NSA/DHS Codebreaker Challenge</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <section id="publications" class="wrap" style="padding:var(--space-8) 0">
+    <div class="kicker">03 · Publications</div>
+    <h2 style="margin-bottom:var(--space-6)">Publications</h2>
+    <div style="display:flex;flex-direction:column;gap:var(--space-4)">
+      <div class="card">
+        <span class="tag tag-accent">First Author · Published</span>
+        <div class="card-title">AI-Driven Update Validation in Endpoint Security</div>
+        <p class="card-body">IEEE SoutheastCon 2026 — published in IEEE Xplore</p>
+        <a href="https://ieeexplore.ieee.org/abstract/document/11476653" target="_blank" rel="noopener" class="btn-ghost btn" style="padding:0">Read on IEEE Xplore →</a>
+      </div>
+      <div class="card">
+        <span class="tag tag-outline">First Author · Under Review</span>
+        <div class="card-title">Operation North Guard: A Multi-Variant Dynamic Flag Framework for Cybersecurity Education</div>
+        <p class="card-body">ISCAP 2026</p>
+      </div>
+      <div class="card">
+        <span class="tag tag-outline">First Author · Under Review</span>
+        <div class="card-title">Misleading Performance in Sysmon-Based Machine Learning: The Impact of Data Representation and Temporal Structure</div>
+        <p class="card-body">EAI Endorsed Transactions</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <section id="research" class="wrap" style="padding:var(--space-8) 0">
+    <div class="kicker">04 · Research Experience</div>
+    <h2 style="margin-bottom:var(--space-6)">Research Experience</h2>
+    <div style="display:flex;flex-direction:column;gap:var(--space-8)">
+      <div class="job-card">
+        <div class="entry-head">
+          <div>
+            <h3 style="margin-bottom:2px">University of North Georgia</h3>
+            <p class="text-muted" style="margin:0;font-size:13px">AI/ML Research Assistant — Dahlonega, GA</p>
+          </div>
+          <span class="text-muted">Jan 2026 – Jun 2026</span>
+        </div>
+        <ul class="bullets" style="margin-top:var(--space-3)">
+          <li>Built an ML-based ransomware detection pipeline using Sysmon endpoint telemetry, collecting and labeling 6,200+ events from live ransomware executions in isolated VM environments</li>
+          <li>Benchmarked five models (Random Forest, XGBoost, SVM, Logistic Regression, Isolation Forest), showing event-level representations inflate accuracy to near-100% while behavioral aggregation reveals true performance of 75–82%</li>
+          <li>Identified and named "temporal collapse" and event-level feature leakage as structural biases in Sysmon-based ML evaluation — findings under review at EAI Endorsed Transactions</li>
+          <li>Analyzed the 2024 CrowdStrike Falcon outage and AI-driven update validation frameworks; published as first-author IEEE SoutheastCon 2026 paper</li>
+        </ul>
+      </div>
+      <div class="job-card">
+        <div class="entry-head">
+          <div>
+            <h3 style="margin-bottom:2px">Georgia Tech Research Institute</h3>
+            <p class="text-muted" style="margin:0;font-size:13px">Undergraduate Researcher — Embedded Systems Security (VIP Program) — Atlanta, GA</p>
+          </div>
+          <span class="text-muted">Aug 2025 – Dec 2025</span>
+        </div>
+        <ul class="bullets" style="margin-top:var(--space-3)">
+          <li>Competed in the CSAW 2025 Embedded Security Challenge, performing side-channel and fault-injection attacks on embedded targets using the ChipWhisperer-Nano platform</li>
+          <li>Researched timing, power, electromagnetic, and acoustic side-channel methods against password-verification firmware; analyzed how early-exit and busy-wait logic produced exploitable leakage</li>
+          <li>Investigated AI/LLM integration into side-channel workflows for automated trace alignment, classification, and key recovery</li>
+          <li>Co-authored the team's technical paper, writing the methodology and deep-learning sections and verifying technical accuracy against IEEE/Springer sources</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <section id="experience" class="wrap" style="padding:var(--space-8) 0">
+    <div class="kicker">05 · Professional Experience</div>
+    <h2 style="margin-bottom:var(--space-6)">Professional Experience</h2>
+    <div style="display:flex;flex-direction:column;gap:var(--space-8)">
+      <div class="job-card">
+        <div class="entry-head">
+          <div>
+            <h3 style="margin-bottom:2px">Federal Reserve Bank of Atlanta</h3>
+            <p class="text-muted" style="margin:0;font-size:13px">Supervision and Regulation (Cybersecurity, Operational Resilience and Emerging Tech) — Atlanta, GA</p>
+          </div>
+          <span class="text-muted">May 2025 – Nov 2025</span>
+        </div>
+        <ul class="bullets" style="margin-top:var(--space-3)">
+          <li>Defined and piloted enterprise AI use cases for cybersecurity and operational workflows within Supervision &amp; Regulation</li>
+          <li>Built automation tools in Microsoft Power Apps to streamline internal data analysis and reporting for examination teams</li>
+          <li>Supported cybersecurity examinations, including critical-vendor operational resilience assessments of regulated institutions</li>
+          <li>Placed 3rd out of ~38 teams across the Federal Reserve System in the Board AI Tournament, developing an enterprise AI orchestration concept</li>
+          <li>Researched FinTech firms and their partnership activity, presenting findings to the Supervision &amp; Regulation group to inform emerging-tech risk awareness</li>
+        </ul>
+      </div>
+      <div class="job-card">
+        <div class="entry-head">
+          <div>
+            <h3 style="margin-bottom:2px">Southern Real Estate Developers (Contract)</h3>
+            <p class="text-muted" style="margin:0;font-size:13px">Web Developer / Consultant — Alpharetta, GA</p>
+          </div>
+          <span class="text-muted">Jan 2025 – Mar 2025</span>
+        </div>
+        <ul class="bullets" style="margin-top:var(--space-3)">
+          <li>Contracted through my own web-development business to design and build the company's website end to end</li>
+          <li>Optimized the site for SEO and redesigned the interface for improved usability</li>
+          <li>Advised on cybersecurity for both the website and internal office systems</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <section id="projects" class="wrap" style="padding:var(--space-8) 0">
+    <div class="kicker">06 · Selected Projects</div>
+    <h2 style="margin-bottom:var(--space-6)">Selected Projects</h2>
+    <div class="grid-2">
+      <div class="card elev-sm">
+        <div class="card-kicker">Personal Project</div>
+        <div class="card-title">AI-Powered Security Assistant</div>
+        <p class="card-body" style="opacity:0.65;flex:none;margin:0">n8n · LLM · RAG · Telegram</p>
+        <ul class="bullets">
+          <li>Built an AI-powered personal assistant using n8n, integrating ChatGPT, a vector database (RAG architecture), and Telegram for real-time interaction</li>
+          <li>Designed automated workflows for data ingestion, semantic search, and contextual response generation</li>
+          <li>Implemented an end-to-end pipeline combining LLMs with vector search for personalized knowledge retrieval</li>
+        </ul>
+      </div>
+      <div class="card elev-sm">
+        <div class="card-kicker">Capstone Project</div>
+        <div class="card-title">Cybersecurity CTF Platform — "Operation North Guard"</div>
+        <p class="card-body" style="opacity:0.65;flex:none;margin:0">Next.js · React · TypeScript</p>
+        <ul class="bullets">
+          <li>Built a full-stack Capture-the-Flag platform for hands-on cybersecurity training</li>
+          <li>Engineered a multi-variant dynamic flag system using salted SHA-256 hashing to prevent flag-sharing and plagiarism in academic settings</li>
+          <li>Developed 10+ challenges across network forensics, cryptography, reverse engineering, SQL injection, and cloud security, using a modular MDX-based challenge engine</li>
+          <li>Basis for first-author ISCAP 2026 paper (under review)</li>
+        </ul>
+        <div style="display:flex;gap:var(--space-4);margin-top:var(--space-2)">
+          <a href="https://ctf-six-tau.vercel.app/" target="_blank" rel="noopener">Live demo →</a>
+          <a href="https://github.com/Kian11228/ung-final-ctf" target="_blank" rel="noopener">Source →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <section id="skills" class="wrap" style="padding:var(--space-8) 0">
+    <div class="kicker">07 · Technical Skills</div>
+    <h2 style="margin-bottom:var(--space-6)">Technical Skills</h2>
+    <div class="grid-3" style="gap:var(--space-6)">
+      <div>
+        <h5 style="margin-bottom:var(--space-2)">Programming</h5>
+        <div class="icon-row" style="flex-wrap:wrap;gap:6px">
+          <span class="tag tag-neutral">Python</span><span class="tag tag-neutral">SQL</span><span class="tag tag-neutral">PowerShell</span><span class="tag tag-neutral">Bash</span><span class="tag tag-neutral">JavaScript</span>
+        </div>
+      </div>
+      <div>
+        <h5 style="margin-bottom:var(--space-2)">Systems</h5>
+        <div class="icon-row" style="flex-wrap:wrap;gap:6px">
+          <span class="tag tag-neutral">Windows</span><span class="tag tag-neutral">Linux</span><span class="tag tag-neutral">Kali Linux</span><span class="tag tag-neutral">macOS</span><span class="tag tag-neutral">Unix</span>
+        </div>
+      </div>
+      <div>
+        <h5 style="margin-bottom:var(--space-2)">Cybersecurity</h5>
+        <div class="icon-row" style="flex-wrap:wrap;gap:6px">
+          <span class="tag tag-neutral">Sysmon</span><span class="tag tag-neutral">Endpoint Telemetry</span><span class="tag tag-neutral">Malware Analysis</span><span class="tag tag-neutral">Network Security</span><span class="tag tag-neutral">Forensics</span><span class="tag tag-neutral">Reverse Engineering</span>
+        </div>
+      </div>
+      <div>
+        <h5 style="margin-bottom:var(--space-2)">AI / ML</h5>
+        <div class="icon-row" style="flex-wrap:wrap;gap:6px">
+          <span class="tag tag-neutral">Machine Learning</span><span class="tag tag-neutral">Feature Engineering</span><span class="tag tag-neutral">Model Evaluation</span><span class="tag tag-neutral">Behavioral Modeling</span>
+        </div>
+      </div>
+      <div>
+        <h5 style="margin-bottom:var(--space-2)">Tools</h5>
+        <div class="icon-row" style="flex-wrap:wrap;gap:6px">
+          <span class="tag tag-neutral">Wireshark</span><span class="tag tag-neutral">Nmap</span><span class="tag tag-neutral">Power Apps</span><span class="tag tag-neutral">Power BI</span><span class="tag tag-neutral">Git</span><span class="tag tag-neutral">FTK Imager</span>
+        </div>
+      </div>
+      <div>
+        <h5 style="margin-bottom:var(--space-2)">Reverse Engineering</h5>
+        <div class="icon-row" style="flex-wrap:wrap;gap:6px">
+          <span class="tag tag-neutral">Ghidra</span><span class="tag tag-neutral">IDA Pro</span><span class="tag tag-neutral">x64dbg</span><span class="tag tag-neutral">Binary Ninja</span><span class="tag tag-neutral">OllyDbg</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <section id="leadership" class="wrap" style="padding:var(--space-8) 0">
+    <div class="kicker">08 · Leadership &amp; Honors</div>
+    <h2 style="margin-bottom:var(--space-6)">Leadership &amp; Honors</h2>
+    <ul class="bullets" style="font-size:15px;gap:12px">
+      <li>2x Winner, UNG Pitch Challenge — pitched a cybersecurity venture integrating hardware, software, and network security</li>
+      <li>National Cyber Scholarship (SANS / CyberStart America) — national high scorer, awarded SANS scholarship</li>
+      <li>University Innovation Fellow — Stanford d.school program; presented at the international UIF conference (U. of Twente, Netherlands)</li>
+      <li>UNG Representative, Virginia Tech &amp; VMI Cyber Immersion Camp — selected for hands-on training in AI/ML, networking, and cyber operations</li>
+    </ul>
+    <p class="text-muted" style="font-size:13px;margin-top:var(--space-4)">Additional experience: retail &amp; customer service, 2018–2026 — worked continuously since high school, throughout undergraduate and graduate studies alongside research and internships.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-4);margin-top:var(--space-4);font-size:13px">
+      <a href="https://ung.edu/news/articles/2026/06/alum-presents-cyber-research-at-conference.php" target="_blank" rel="noopener">Press: Alum presents cyber research →</a>
+      <a href="https://ung.edu/news/articles/2026/06/students-research-network-security.php" target="_blank" rel="noopener">Press: Students research network security →</a>
+      <a href="https://ung.edu/news/articles/2025/06/students-take-part-in-meetup-in-netherlands.php" target="_blank" rel="noopener">Press: UIF Netherlands meetup →</a>
+      <a href="https://ung.edu/news/articles/2024/11/idea-pitch-challenge-promotes-locals-ung.php" target="_blank" rel="noopener">Press: Idea Pitch Challenge →</a>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <section id="contact" class="wrap" style="padding:var(--space-8) 0">
+    <div class="grid-2" style="align-items:start">
+      <div>
+        <div class="kicker">09 · Contact</div>
+        <h2>Let's talk</h2>
+        <p style="max-width:44ch;opacity:0.85">Open to cybersecurity and AI/ML security research roles, internships, and collaboration. Reach out directly or send a message.</p>
+        <div style="display:flex;flex-direction:column;gap:var(--space-2);margin-top:var(--space-4);font-size:14px">
+          <a href="mailto:eskian29@gmail.com">eskian29@gmail.com</a>
+          <a href="mailto:kesmaeili3@gatech.edu">kesmaeili3@gatech.edu</a>
+          <span>(678) 368-5381</span>
+          <a href="https://github.com/Kian11228" target="_blank" rel="noopener">github.com/Kian11228</a>
+          <a href="https://www.linkedin.com/in/kian-esmaeili/" target="_blank" rel="noopener">linkedin.com/in/kian-esmaeili</a>
+        </div>
+      </div>
+      <form action="mailto:eskian29@gmail.com" method="post" enctype="text/plain" style="display:flex;flex-direction:column;gap:var(--space-3)">
+        <div class="field">
+          <label for="name">Name</label>
+          <input class="input" id="name" name="name" type="text" placeholder="Your name">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input class="input" id="email" name="email" type="email" placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea class="input" id="message" name="message" placeholder="What would you like to discuss?"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Send message</button>
+      </form>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <footer class="wrap" style="padding:var(--space-6) 0 var(--space-8);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-3)">
+    <span class="text-muted" style="font-size:13px">© 2026 Kian Esmaeili</span>
+    <a href="#top" style="font-size:13px">Back to top ↑</a>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kian Esmaeili — Cybersecurity & AI/ML Security Researcher</title>
+<meta name="description" content="Portfolio of Kian Esmaeili — Cybersecurity and AI/ML Security Researcher, first-author IEEE publication.">
+<style>
+  :root{
+    --bg:#0a0e14;
+    --bg-alt:#0e131b;
+    --panel:#121822;
+    --panel-border:#1e2733;
+    --text:#dbe4ee;
+    --text-dim:#8291a3;
+    --accent:#39d3a5;
+    --accent-dim:#1f7a5c;
+    --accent-glow:rgba(57,211,165,0.15);
+    --mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    font-size:16px;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:1000px; margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(10,14,20,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--panel-border);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:1000px; margin:0 auto; padding:16px 24px;
+  }
+  .logo{font-family:var(--mono); font-weight:700; color:var(--text); font-size:1.05rem; letter-spacing:0.5px;}
+  .logo span{color:var(--accent);}
+  .nav-links{display:flex; gap:28px; list-style:none;}
+  .nav-links a{color:var(--text-dim); font-size:0.92rem; font-weight:500;}
+  .nav-links a:hover{color:var(--accent); text-decoration:none;}
+  .nav-toggle{display:none; background:none; border:none; color:var(--text); font-size:1.5rem; cursor:pointer;}
+
+  @media (max-width:720px){
+    .nav-links{
+      position:absolute; top:100%; left:0; right:0;
+      background:var(--bg-alt); border-bottom:1px solid var(--panel-border);
+      flex-direction:column; gap:0; display:none;
+    }
+    .nav-links.open{display:flex;}
+    .nav-links li{border-top:1px solid var(--panel-border);}
+    .nav-links a{display:block; padding:14px 24px;}
+    .nav-toggle{display:block;}
+  }
+
+  /* HERO */
+  .hero{
+    padding:100px 0 80px;
+    background:
+      radial-gradient(ellipse 700px 400px at 80% -10%, var(--accent-glow), transparent),
+      var(--bg);
+    border-bottom:1px solid var(--panel-border);
+  }
+  .eyebrow{
+    font-family:var(--mono); color:var(--accent); font-size:0.85rem;
+    letter-spacing:1px; text-transform:uppercase; margin-bottom:16px;
+    display:inline-block; border:1px solid var(--accent-dim); padding:4px 10px; border-radius:4px;
+    background:rgba(57,211,165,0.06);
+  }
+  .hero h1{
+    font-size:2.6rem; font-weight:800; line-height:1.15; margin-bottom:16px; color:#fff;
+  }
+  .hero .tagline{
+    font-size:1.15rem; color:var(--text-dim); max-width:620px; margin-bottom:28px;
+  }
+  .hero .tagline strong{color:var(--text); font-weight:600;}
+  .btn-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:32px;}
+  .btn{
+    font-family:var(--sans); font-weight:600; font-size:0.92rem;
+    padding:11px 22px; border-radius:6px; border:1px solid transparent; cursor:pointer;
+  }
+  .btn-primary{background:var(--accent); color:#04140f;}
+  .btn-primary:hover{background:#4fe0b3; text-decoration:none;}
+  .btn-ghost{background:transparent; border:1px solid var(--panel-border); color:var(--text);}
+  .btn-ghost:hover{border-color:var(--accent); color:var(--accent); text-decoration:none;}
+  .hero-links{display:flex; gap:20px; font-family:var(--mono); font-size:0.88rem; color:var(--text-dim);}
+
+  /* SECTION */
+  section{padding:64px 0;}
+  section.alt{background:var(--bg-alt); border-top:1px solid var(--panel-border); border-bottom:1px solid var(--panel-border);}
+  .section-head{margin-bottom:36px;}
+  .section-num{font-family:var(--mono); color:var(--accent); font-size:0.85rem; margin-bottom:6px;}
+  h2{font-size:1.6rem; color:#fff; font-weight:700;}
+
+  /* ABOUT */
+  .about-text{color:var(--text-dim); font-size:1.02rem; max-width:720px;}
+  .about-text p{margin-bottom:14px;}
+  .about-text strong{color:var(--text);}
+
+  /* EXPERIENCE */
+  .timeline{display:flex; flex-direction:column; gap:28px;}
+  .job{
+    background:var(--panel); border:1px solid var(--panel-border); border-radius:10px;
+    padding:22px 24px;
+  }
+  .job-top{display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; margin-bottom:4px;}
+  .job-role{font-weight:700; color:#fff; font-size:1.05rem;}
+  .job-date{font-family:var(--mono); font-size:0.82rem; color:var(--accent);}
+  .job-org{color:var(--text-dim); font-size:0.92rem; margin-bottom:12px;}
+  .job ul{list-style:none; display:flex; flex-direction:column; gap:8px;}
+  .job li{position:relative; padding-left:18px; color:var(--text-dim); font-size:0.93rem;}
+  .job li::before{content:"▸"; position:absolute; left:0; color:var(--accent);}
+
+  /* RESEARCH */
+  .pub-list{display:flex; flex-direction:column; gap:16px;}
+  .pub{
+    border-left:2px solid var(--accent-dim); padding:6px 0 6px 18px;
+  }
+  .pub-title{color:#fff; font-weight:600; font-size:0.98rem; margin-bottom:4px;}
+  .pub-meta{font-family:var(--mono); font-size:0.8rem; color:var(--accent);}
+  .pub-status{color:var(--text-dim); font-size:0.85rem;}
+
+  /* PROJECTS */
+  .project-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  @media (max-width:720px){.project-grid{grid-template-columns:1fr;}}
+  .project-card{
+    background:var(--panel); border:1px solid var(--panel-border); border-radius:10px;
+    padding:24px; display:flex; flex-direction:column;
+  }
+  .project-card h3{color:#fff; font-size:1.08rem; margin-bottom:4px;}
+  .project-tag{font-family:var(--mono); font-size:0.78rem; color:var(--text-dim); margin-bottom:14px;}
+  .project-card ul{list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:16px; flex:1;}
+  .project-card li{position:relative; padding-left:18px; color:var(--text-dim); font-size:0.9rem;}
+  .project-card li::before{content:"▸"; position:absolute; left:0; color:var(--accent);}
+  .project-link{font-family:var(--mono); font-size:0.85rem;}
+
+  /* SKILLS */
+  .skills-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;}
+  @media (max-width:720px){.skills-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:480px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-cat h4{font-family:var(--mono); color:var(--accent); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;}
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    background:var(--panel); border:1px solid var(--panel-border); color:var(--text-dim);
+    font-size:0.82rem; padding:5px 10px; border-radius:5px; font-family:var(--mono);
+  }
+
+  /* HONORS */
+  .honors-list{display:flex; flex-direction:column; gap:14px;}
+  .honor{display:flex; gap:14px; align-items:flex-start;}
+  .honor-icon{color:var(--accent); font-family:var(--mono); flex-shrink:0;}
+  .honor-text{color:var(--text-dim); font-size:0.94rem;}
+  .honor-text strong{color:var(--text);}
+
+  /* EDUCATION */
+  .edu-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  @media (max-width:720px){.edu-grid{grid-template-columns:1fr;}}
+  .edu-card{background:var(--panel); border:1px solid var(--panel-border); border-radius:10px; padding:22px 24px;}
+  .edu-card h3{color:#fff; font-size:1rem; margin-bottom:4px;}
+  .edu-card .edu-loc{color:var(--text-dim); font-size:0.85rem; margin-bottom:8px;}
+  .edu-card .edu-degree{color:var(--accent); font-size:0.88rem; margin-bottom:10px; font-family:var(--mono);}
+  .edu-card ul{list-style:none; display:flex; flex-direction:column; gap:6px;}
+  .edu-card li{position:relative; padding-left:16px; color:var(--text-dim); font-size:0.87rem;}
+  .edu-card li::before{content:"–"; position:absolute; left:0; color:var(--text-dim);}
+
+  /* CONTACT */
+  .contact-box{
+    background:var(--panel); border:1px solid var(--panel-border); border-radius:12px;
+    padding:44px; text-align:center;
+  }
+  .contact-box h2{margin-bottom:10px;}
+  .contact-box p{color:var(--text-dim); margin-bottom:26px;}
+  .contact-links{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+
+  footer{
+    padding:30px 0; text-align:center; color:var(--text-dim); font-size:0.82rem;
+    border-top:1px solid var(--panel-border); font-family:var(--mono);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">K<span>_</span>Esmaeili</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Cybersecurity · AI/ML Security Research</div>
+    <h1>Kian Esmaeili</h1>
+    <p class="tagline">
+      Cybersecurity and AI/ML security researcher focused on <strong>endpoint telemetry, adversarial ML evaluation, and embedded systems security</strong>.
+      First-author IEEE publication, incoming MS Cybersecurity student at Georgia Tech.
+    </p>
+    <div class="btn-row">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+    <div class="hero-links">
+      <a href="mailto:Eskian29@gmail.com">Eskian29@gmail.com</a>
+      <a href="https://github.com/Kian11228" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/kian-esmaeili-61b6701b0/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">01 · About</div>
+      <h2>Background</h2>
+    </div>
+    <div class="about-text">
+      <p>I'm a cybersecurity researcher with a focus on <strong>AI/ML security</strong> — how machine learning models behave (and fail) when applied to real endpoint telemetry, and how adversaries exploit hardware and firmware at the signal level. My work spans <strong>ransomware detection pipelines built on Sysmon data</strong>, <strong>side-channel and fault-injection attacks</strong> on embedded systems, and building tools that make cybersecurity education more rigorous.</p>
+      <p>I'm a first-author on an <strong>IEEE SoutheastCon 2026</strong> publication and have two additional papers under review. I graduate from the <strong>University of North Georgia</strong> in May 2026 with a B.S. in Cybersecurity, and begin my <strong>M.S. in Cybersecurity at Georgia Institute of Technology</strong> in August 2026.</p>
+      <p>Alongside research, I've worked in <strong>cybersecurity examination and operational resilience</strong> at the Federal Reserve Bank of Atlanta, and run my own web development and consulting practice.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">02 · Experience</div>
+      <h2>Where I've Worked</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="job">
+        <div class="job-top">
+          <div class="job-role">AI/ML Research Assistant</div>
+          <div class="job-date">Jan 2026 – Jun 2026</div>
+        </div>
+        <div class="job-org">University of North Georgia · Dahlonega, GA</div>
+        <ul>
+          <li>Built an ML-based ransomware detection pipeline using Sysmon endpoint telemetry, collecting and labeling 6,200+ events from live ransomware executions in isolated VM environments</li>
+          <li>Benchmarked five models (Random Forest, XGBoost, SVM, Logistic Regression, Isolation Forest), showing event-level representations inflate accuracy to near-100% while behavioral aggregation reveals true performance of 75–82%</li>
+          <li>Identified and named "temporal collapse" and event-level feature leakage as structural biases in Sysmon-based ML evaluation — findings under review at EAI Endorsed Transactions</li>
+          <li>Analyzed the 2024 CrowdStrike Falcon outage and AI-driven update validation frameworks; published as first-author IEEE SoutheastCon 2026 paper</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-top">
+          <div class="job-role">Undergraduate Researcher — Embedded Systems Security (VIP Program)</div>
+          <div class="job-date">Aug 2025 – Dec 2025</div>
+        </div>
+        <div class="job-org">Georgia Tech Research Institute · Atlanta, GA</div>
+        <ul>
+          <li>Competed in the CSAW 2025 Embedded Security Challenge, performing side-channel and fault-injection attacks on embedded targets using the ChipWhisperer-Nano platform</li>
+          <li>Researched timing, power, electromagnetic, and acoustic side-channel methods against password-verification firmware; analyzed how early-exit and busy-wait logic produced exploitable leakage</li>
+          <li>Investigated AI/LLM integration into side-channel workflows for automated trace alignment, classification, and key recovery</li>
+          <li>Co-authored the team's technical paper, writing the methodology and deep-learning sections and verifying technical accuracy against IEEE/Springer sources</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-top">
+          <div class="job-role">Supervision and Regulation — Cybersecurity, Operational Resilience & Emerging Tech</div>
+          <div class="job-date">May 2025 – Nov 2025</div>
+        </div>
+        <div class="job-org">Federal Reserve Bank of Atlanta · Atlanta, GA</div>
+        <ul>
+          <li>Defined and piloted enterprise AI use cases for cybersecurity and operational workflows within Supervision & Regulation</li>
+          <li>Built automation tools in Microsoft Power Apps to streamline internal data analysis and reporting for examination teams</li>
+          <li>Supported cybersecurity examinations, including critical-vendor operational resilience assessments of regulated institutions</li>
+          <li>Placed 3rd out of ~38 teams across the Federal Reserve System in the Board AI Tournament, developing an enterprise AI orchestration concept</li>
+          <li>Built a Power Apps platform to centralize and categorize shared resources (internal Ideathon)</li>
+          <li>Researched FinTech firms and their partnership activity, presenting findings to Supervision & Regulation to inform emerging-tech risk awareness</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-top">
+          <div class="job-role">Web Developer / Consultant (Contract)</div>
+          <div class="job-date">Jan 2025 – Mar 2025</div>
+        </div>
+        <div class="job-org">Southern Real Estate Developers · Alpharetta, GA</div>
+        <ul>
+          <li>Contracted through my own web-development business to design and build the company's website end to end</li>
+          <li>Optimized the site for SEO and redesigned the interface for improved usability</li>
+          <li>Advised on cybersecurity for both the website and internal office systems</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">03 · Research</div>
+      <h2>Publications</h2>
+    </div>
+    <div class="pub-list">
+      <div class="pub">
+        <div class="pub-title">AI-Driven Update Validation in Endpoint Security</div>
+        <div class="pub-meta">IEEE SoutheastCon 2026 · First Author</div>
+        <div class="pub-status">Published, IEEE Xplore</div>
+      </div>
+      <div class="pub">
+        <div class="pub-title">Operation North Guard: A Multi-Variant Dynamic Flag Framework for Cybersecurity Education</div>
+        <div class="pub-meta">ISCAP 2026 · First Author</div>
+        <div class="pub-status">Under Review</div>
+      </div>
+      <div class="pub">
+        <div class="pub-title">Misleading Performance in Sysmon-Based Machine Learning: The Impact of Data Representation and Temporal Structure</div>
+        <div class="pub-meta">EAI Endorsed Transactions · First Author</div>
+        <div class="pub-status">Under Review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">04 · Projects</div>
+      <h2>Selected Projects</h2>
+    </div>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <h3>Cybersecurity CTF Platform — "Operation North Guard"</h3>
+        <div class="project-tag">Next.js · React · TypeScript · Capstone Project</div>
+        <ul>
+          <li>Built a full-stack Capture the Flag platform for hands-on cybersecurity training</li>
+          <li>Engineered a multi-variant dynamic flag system using salted SHA-256 hashing to prevent flag-sharing and plagiarism in academic settings</li>
+          <li>Developed 10+ challenges across network forensics, cryptography, reverse engineering, SQL injection, and cloud security using a modular MDX-based challenge engine</li>
+          <li>Basis for first-author ISCAP 2026 paper (under review)</li>
+        </ul>
+        <a class="project-link" href="https://ctf-six-tau.vercel.app/" target="_blank" rel="noopener">→ ctf-six-tau.vercel.app</a>
+      </div>
+
+      <div class="project-card">
+        <h3>AI-Powered Security Assistant</h3>
+        <div class="project-tag">n8n · LLM · RAG · Personal Project</div>
+        <ul>
+          <li>Developed an AI-powered personal assistant using n8n, integrating ChatGPT, a vector database (RAG architecture), and Telegram for real-time interaction</li>
+          <li>Designed automated workflows for data ingestion, semantic search, and contextual response generation</li>
+          <li>Implemented an end-to-end pipeline combining LLMs with vector search for personalized knowledge retrieval</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">05 · Skills</div>
+      <h2>Technical Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <h4>Programming</h4>
+        <div class="chip-row">
+          <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">PowerShell</span><span class="chip">Bash</span><span class="chip">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h4>Systems</h4>
+        <div class="chip-row">
+          <span class="chip">Windows</span><span class="chip">Linux</span><span class="chip">Kali Linux</span><span class="chip">macOS</span><span class="chip">Unix</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h4>Cybersecurity</h4>
+        <div class="chip-row">
+          <span class="chip">Sysmon</span><span class="chip">Endpoint Telemetry</span><span class="chip">Malware Analysis</span><span class="chip">Network Security</span><span class="chip">Forensics</span><span class="chip">Reverse Engineering</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h4>AI/ML</h4>
+        <div class="chip-row">
+          <span class="chip">Classification</span><span class="chip">Feature Engineering</span><span class="chip">Model Evaluation</span><span class="chip">Behavioral Modeling</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h4>Tools</h4>
+        <div class="chip-row">
+          <span class="chip">Wireshark</span><span class="chip">Nmap</span><span class="chip">Power Apps</span><span class="chip">Power BI</span><span class="chip">Git</span><span class="chip">FTK Imager</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h4>Reverse Engineering</h4>
+        <div class="chip-row">
+          <span class="chip">Ghidra</span><span class="chip">IDA Pro</span><span class="chip">x64dbg</span><span class="chip">Binary Ninja</span><span class="chip">OllyDbg</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="education">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">06 · Education</div>
+      <h2>Education</h2>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <h3>Georgia Institute of Technology</h3>
+        <div class="edu-loc">Atlanta, GA</div>
+        <div class="edu-degree">M.S. Cybersecurity (Information Technologies)</div>
+        <ul>
+          <li>Expected graduation: May 2028 (starting August 2026)</li>
+        </ul>
+      </div>
+      <div class="edu-card">
+        <h3>University of North Georgia</h3>
+        <div class="edu-loc">Dahlonega, GA</div>
+        <div class="edu-degree">B.S. Cybersecurity, Minor in Entrepreneurship — May 2026 · GPA 3.82/4.00</div>
+        <ul>
+          <li>Honors Thesis: AI-driven endpoint security using behavioral analysis of Sysmon telemetry</li>
+          <li>First-author IEEE publication (SoutheastCon 2026, IEEE Xplore)</li>
+          <li>2x recognized in NSA/DHS Codebreaker Challenge</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="honors">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">07 · Leadership & Honors</div>
+      <h2>Leadership & Honors</h2>
+    </div>
+    <div class="honors-list">
+      <div class="honor">
+        <div class="honor-icon">▸</div>
+        <div class="honor-text"><strong>2x Winner, UNG Pitch Challenge</strong> — pitched a cybersecurity venture integrating hardware, software, and network security</div>
+      </div>
+      <div class="honor">
+        <div class="honor-icon">▸</div>
+        <div class="honor-text"><strong>National Cyber Scholarship (SANS / CyberStart America)</strong> — national high scorer, awarded SANS scholarship</div>
+      </div>
+      <div class="honor">
+        <div class="honor-icon">▸</div>
+        <div class="honor-text"><strong>University Innovation Fellow</strong> — Stanford d.school program; presented at the international UIF conference (University of Twente, Netherlands)</div>
+      </div>
+      <div class="honor">
+        <div class="honor-icon">▸</div>
+        <div class="honor-text"><strong>UNG Representative, Virginia Tech & VMI Cyber Immersion Camp</strong> — selected for hands-on training in AI/ML, networking, and cyber operations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <h2>Let's Connect</h2>
+      <p>Open to research collaborations, cybersecurity roles, and interesting problems.</p>
+      <div class="contact-links">
+        <a href="mailto:Eskian29@gmail.com" class="btn btn-primary">Email Me</a>
+        <a href="https://www.linkedin.com/in/kian-esmaeili-61b6701b0/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+        <a href="https://github.com/Kian11228" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Kian Esmaeili. Built with care.
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+</script>
+
+</body>
+</html>
