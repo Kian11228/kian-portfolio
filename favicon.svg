@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#171512"/>
+  <rect x="4" y="4" width="56" height="56" fill="none" stroke="#a85530" stroke-width="2"/>
+  <text x="32" y="42" font-family="Georgia, 'Times New Roman', serif" font-size="28" font-weight="700" fill="#f5f1e8" text-anchor="middle">KE</text>
+</svg>
