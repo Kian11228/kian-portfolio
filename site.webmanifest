@@ -1,0 +1,12 @@
+{
+  "name": "Kian Esmaeili · AI Security Researcher",
+  "short_name": "Kian Esmaeili",
+  "description": "AI security research: evaluation integrity, trust in automated defense, and evidence that can be verified.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f7fa",
+  "theme_color": "#f4f7fa",
+  "icons": [
+    { "src": "/assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
